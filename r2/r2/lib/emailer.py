@@ -265,6 +265,11 @@ def send_queued_mail(test = False):
             if test:
                 print mimetext.as_string()
             else:
+                if g.smtp_username and g.smtp_password:
+                    session.ehlo()
+                    session.starttls()
+                    session.ehlo()
+                    session.login(g.smtp_username, g.smtp_password)
                 session.sendmail(email.fr_addr, email.to_addr,
                                  mimetext.as_string())
                 email.set_sent(rejected = False)
@@ -416,6 +421,11 @@ def send_html_email(to_addr, from_addr, subject, html,
             filename=attachment['name'])
         msg.attach(part)
 
+    if g.smtp_username and g.smtp_password:
+        session.ehlo()
+        session.starttls()
+        session.ehlo()
+        session.login(g.smtp_username, g.smtp_password)
     session = smtplib.SMTP(g.smtp_server)
     session.sendmail(from_addr, to_addr, msg.as_string())
     session.quit()
