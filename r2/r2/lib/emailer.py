@@ -255,7 +255,7 @@ def send_queued_mail(test = False):
 
     clear = False
     if not test:
-        session = smtplib.SMTP(g.smtp_server)
+        session = smtplib.SMTP(g.smtp_server, g.smtp_port)
     def sendmail(email):
         try:
             mimetext = email.to_MIMEText()
@@ -421,12 +421,12 @@ def send_html_email(to_addr, from_addr, subject, html,
             filename=attachment['name'])
         msg.attach(part)
 
+    session = smtplib.SMTP(g.smtp_server, g.smtp_port)
     if g.smtp_username and g.smtp_password:
         session.ehlo()
         session.starttls()
         session.ehlo()
         session.login(g.smtp_username, g.smtp_password)
-    session = smtplib.SMTP(g.smtp_server)
     session.sendmail(from_addr, to_addr, msg.as_string())
     session.quit()
 

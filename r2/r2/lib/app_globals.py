@@ -233,6 +233,7 @@ class Globals(object):
             'precompute_limit_hot',
             'hot_max_links_per_subreddit',
             'fetch_title_max_download_kb',
+            'smtp_port',
         ],
 
         ConfigValue.float: [
