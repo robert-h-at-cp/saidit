@@ -122,6 +122,7 @@ setup(
     [r2.provider.cdn]
     fastly = r2.lib.providers.cdn.fastly:FastlyCdnProvider
     cloudflare = r2.lib.providers.cdn.cloudflare:CloudFlareCdnProvider
+    cloudfront = r2.lib.providers.cdn.cloudfront:CloudFrontCdnProvider
     null = r2.lib.providers.cdn.null:NullCdnProvider
     [r2.provider.auth]
     cookie = r2.lib.providers.auth.cookie:CookieAuthenticationProvider
